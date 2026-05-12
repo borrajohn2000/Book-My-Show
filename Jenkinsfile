@@ -92,11 +92,11 @@ pipeline {
                         sh '''
                         echo "Building Docker Image"
 
-                        docker build --no-cache -t borrajohn2000/bms:latest -f bookmyshow-app/Dockerfile bookmyshow-app
+                        docker build --no-cache -t borrajohn/bms:latest -f bookmyshow-app/Dockerfile bookmyshow-app
 
                         echo "Pushing Docker Image"
 
-                        docker push borrajohn2000/bms:latest
+                        docker push borrajohn/bms:latest
                         '''
                     }
                 }
@@ -115,7 +115,7 @@ pipeline {
 
                 echo "Running New Container"
 
-                docker run -d --restart=always --name bms -p 3000:3000 borrajohn2000/bms:latest
+                docker run -d --restart=always --name bms -p 3000:3000 borrajohn/bms:latest
 
                 sleep 5
 
