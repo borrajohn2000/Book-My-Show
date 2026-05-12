@@ -87,16 +87,16 @@ pipeline {
 
                 script {
 
-                    withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
+                    withDockerRegistry(credentialsId: 'dockerhub-creds', toolName: 'docker') {
 
                         sh '''
                         echo "Building Docker Image"
 
-                        docker build --no-cache -t ASKFORTESAWS/bms:latest -f bookmyshow-app/Dockerfile bookmyshow-app
+                        docker build --no-cache -t borrajohn2000/bms:latest -f bookmyshow-app/Dockerfile bookmyshow-app
 
                         echo "Pushing Docker Image"
 
-                        docker push ASKFORTESAWS/bms:latest
+                        docker push borrajohn2000/bms:latest
                         '''
                     }
                 }
@@ -115,7 +115,7 @@ pipeline {
 
                 echo "Running New Container"
 
-                docker run -d --restart=always --name bms -p 3000:3000 ASKFORTESAWS/bms:latest
+                docker run -d --restart=always --name bms -p 3000:3000 borrajohn2000/bms:latest
 
                 sleep 5
 
